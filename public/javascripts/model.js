@@ -1,18 +1,22 @@
 var Contact = Contact || {};
 
 Contact = (function (self) {
-    'use strict';
+  'use strict';
 
-    self.Model = function () {
-        this.iterator = function () {
-            return Contact.Contacts.instance().iterator();
-        };
-
-        this.remove = function (id) {
-            Contact.Contacts.instance().remove(id);
-        };
+  self.Model = function () {
+    this.iterator = function (i) {
+      return Contact.Contacts.instance().iterator(i);
     };
 
-    return self;
+    this.remove = function (id) {
+      Contact.Contacts.instance().remove(id);
+    };
+
+    this.sort = function () {
+      return Contact.Contacts.instance().sort();
+    };
+  };
+
+  return self;
 
 }(Contact || {}));

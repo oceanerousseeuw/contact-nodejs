@@ -6,9 +6,9 @@ Contact = (function (self) {
     self.View = function (m) {
         var model = m;
 
-        this.update = function () {
+        this.update = function (list) {
             $('#contacts').empty();
-            init();
+            init(list);
         };
 
         var buildHeader = function (table) {
@@ -80,8 +80,8 @@ Contact = (function (self) {
             $('<td />', {id: 'cellTags', html: text}).appendTo(line);
         };
 
-        var init = function () {
-            var it = model.iterator();
+        var init = function (list) {
+            var it = model.iterator(list);
             var table = $('<table />');
 
             buildHeader(table);
@@ -108,6 +108,10 @@ Contact = (function (self) {
                 }
             }
             table.appendTo($('#contacts'));
+            $('<td />',
+              {
+                  html: '<a id="button_sort" class="btn btn-warning btn-block active">Sort</a>'
+              }).appendTo($('#contacts'));
         };
 
         init();
